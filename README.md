@@ -89,4 +89,4 @@ Done with the claws? **Bye bye.** 🦀
 
 ## 📜 License
 
-MIT License - Copyright (c) 2025 [wanikua](https://github.com/wanikua)
+MIT License - Copyright (c) 2026 [wanikua](https://github.com/wanikua)

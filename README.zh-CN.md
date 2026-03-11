@@ -89,4 +89,4 @@ irm https://raw.githubusercontent.com/wanikua/byebyeclaw/main/uninstall.ps1 | ie
 
 ## 📜 License
 
-MIT License - Copyright (c) 2025 [wanikua](https://github.com/wanikua)
+MIT License - Copyright (c) 2026 [wanikua](https://github.com/wanikua)
