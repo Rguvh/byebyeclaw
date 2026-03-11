@@ -212,7 +212,7 @@ found() {
     local type="$1" value="$2" desc="$3"
     echo -e "  ${RED}✗${NC} $desc"
     FOUND_ITEMS+=("$type:$value")
-    ((FOUND_COUNT++))
+    FOUND_COUNT=$((FOUND_COUNT + 1))
 }
 
 # =====================================================================
