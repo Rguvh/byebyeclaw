@@ -65,6 +65,7 @@ irm https://raw.githubusercontent.com/wanikua/byebyeclaw/main/uninstall.ps1 | ie
 ```bash
 ./uninstall.sh --dry-run        # 仅扫描，不删除
 ./uninstall.sh --keep-config    # 保留配置文件
+./uninstall.sh --select         # 逐项选择要删除的内容
 ./uninstall.sh --lang=zh        # 强制中文
 ./uninstall.sh --lang=en        # 强制英文
 ```
@@ -72,6 +73,7 @@ irm https://raw.githubusercontent.com/wanikua/byebyeclaw/main/uninstall.ps1 | ie
 ```powershell
 .\uninstall.ps1 -DryRun         # 仅扫描
 .\uninstall.ps1 -KeepConfig     # 保留配置文件
+.\uninstall.ps1 -Select         # 逐项选择要删除的内容
 .\uninstall.ps1 -Lang zh        # 强制中文
 .\uninstall.ps1 -Lang en        # 强制英文
 ```

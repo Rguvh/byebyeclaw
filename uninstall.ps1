@@ -12,6 +12,7 @@
 param(
     [switch]$DryRun,
     [switch]$KeepConfig,
+    [switch]$Select,
     [ValidateSet("en","zh")]
     [string]$Lang
 )
@@ -66,6 +67,8 @@ function T($key) {
         done_err_pre  = "⚠️  卸载完成，但有"
         done_err_post = "个项目未能成功清理。请手动检查上述失败项。"
         bye           = "👋 Bye bye, Claws! 🦞🦀"
+        select_mode   = "逐项选择模式"
+        select_prompt = "删除? (y/n)"
     }
     $en = @{
         title         = "👋 ByeByeClaw - Claw Family Uninstaller"
@@ -104,6 +107,8 @@ function T($key) {
         done_err_pre  = "⚠️  Uninstall complete, but"
         done_err_post = "items could not be cleaned. Please check manually."
         bye           = "👋 Bye bye, Claws! 🦞🦀"
+        select_mode   = "interactive select mode"
+        select_prompt = "remove? (y/n)"
     }
     if ($Lang -eq "zh") { return $zh[$key] } else { return $en[$key] }
 }
@@ -113,6 +118,7 @@ Write-Host (T "title") -ForegroundColor Cyan
 Write-Host "============================================"
 if ($DryRun)    { Write-Host "   $(T 'dry_run')" -ForegroundColor Yellow }
 if ($KeepConfig){ Write-Host "   $(T 'keep_config')" -ForegroundColor Yellow }
+if ($Select)    { Write-Host "   [$(T 'select_mode')]" -ForegroundColor Yellow }
 Write-Host ""
 
 $foundItems = @()
@@ -183,10 +189,18 @@ foreach ($pkg in $cargoPackages) {
 # --- 4. binaries ---
 Write-Host "  [$(T 'bin_sec')]" -ForegroundColor DarkGray
 $npmPrefix = npm config get prefix 2>$null
-if ($npmPrefix) {
+$binSearchDirs = @()
+if ($npmPrefix) { $binSearchDirs += $npmPrefix }
+# nvm-windows
+if (Test-Path "$env:NVM_HOME") {
+    Get-ChildItem "$env:NVM_HOME" -Directory -ErrorAction SilentlyContinue | ForEach-Object { $binSearchDirs += $_.FullName }
+} elseif (Test-Path "$env:APPDATA\nvm") {
+    Get-ChildItem "$env:APPDATA\nvm" -Directory -ErrorAction SilentlyContinue | ForEach-Object { $binSearchDirs += $_.FullName }
+}
+foreach ($searchDir in $binSearchDirs) {
     foreach ($name in $binaryNames) {
         foreach ($ext in @(".cmd",".ps1",".exe","")) {
-            $bp = "$npmPrefix\$name$ext"
+            $bp = "$searchDir\$name$ext"
             if (Test-Path $bp) { Found "bin" $bp "$(T 'bin_sec'): $bp" }
         }
     }
@@ -278,10 +292,12 @@ if ($DryRun) {
 # CONFIRM
 # ====================================
 
-$confirm = Read-Host (T "confirm")
-if ($confirm -ne "y" -and $confirm -ne "Y") {
-    Write-Host (T "cancelled") -ForegroundColor Yellow
-    exit 0
+if (-not $Select) {
+    $confirm = Read-Host (T "confirm")
+    if ($confirm -ne "y" -and $confirm -ne "Y") {
+        Write-Host (T "cancelled") -ForegroundColor Yellow
+        exit 0
+    }
 }
 
 Write-Host ""
@@ -298,6 +314,11 @@ function Ok  { Write-Host "✓" -ForegroundColor Green }
 function Fail { Write-Host "✗ $(T 'fail')" -ForegroundColor Red; $script:errors++ }
 
 foreach ($item in $foundItems) {
+    # --Select mode: ask for each item
+    if ($Select) {
+        $sel = Read-Host "  $($item.value) — $(T 'select_prompt')"
+        if ($sel -ne "y" -and $sel -ne "Y") { continue }
+    }
     switch ($item.type) {
         "npm" {
             Write-Host -NoNewline "  $(T 'uninstall') npm: $($item.value) ... "

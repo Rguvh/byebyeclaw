@@ -7,7 +7,7 @@
 #   NanoBot, MicroClaw, RayClaw, SharpClaw, MoltBot,
 #   and derivatives / 及其衍生品
 
-set -euo pipefail
+set -eo pipefail
 
 # --- i18n / 国际化 ---
 
@@ -94,6 +94,9 @@ t() {
             usage3)         echo "保留配置文件" ;;
             usage4)         echo "强制英文输出" ;;
             usage5)         echo "强制中文输出" ;;
+            usage6)         echo "逐项选择要删除的内容" ;;
+            select_prompt)  echo "删除? (y/n) " ;;
+            select_mode)    echo "[逐项选择模式]" ;;
         esac
     else
         case "$key" in
@@ -165,6 +168,9 @@ t() {
             usage3)         echo "keep config files" ;;
             usage4)         echo "force English output" ;;
             usage5)         echo "force Chinese output" ;;
+            usage6)         echo "interactively select items to remove" ;;
+            select_prompt)  echo "remove? (y/n) " ;;
+            select_mode)    echo "[interactive select mode]" ;;
         esac
     fi
 }
@@ -181,16 +187,19 @@ NC='\033[0m'
 # --- Args ---
 DRY_RUN=false
 KEEP_CONFIG=false
+SELECT_MODE=false
 for arg in "$@"; do
     case "$arg" in
         --dry-run)      DRY_RUN=true ;;
         --keep-config)  KEEP_CONFIG=true ;;
+        --select)       SELECT_MODE=true ;;
         --lang=en)      LANG_CODE="en" ;;
         --lang=zh)      LANG_CODE="zh" ;;
         --help|-h)
-            echo "$(t usage1): $0 [--dry-run] [--keep-config] [--lang=en|zh]"
+            echo "$(t usage1): $0 [--dry-run] [--keep-config] [--select] [--lang=en|zh]"
             echo "  --dry-run      $(t usage2)"
             echo "  --keep-config  $(t usage3)"
+            echo "  --select       $(t usage6)"
             echo "  --lang=en      $(t usage4)"
             echo "  --lang=zh      $(t usage5)"
             exit 0
@@ -203,6 +212,7 @@ echo -e "${CYAN}$(t title)${NC}"
 echo "============================================"
 $DRY_RUN && echo -e "${YELLOW}   $(t dry_run)${NC}"
 $KEEP_CONFIG && echo -e "${YELLOW}   $(t keep_config)${NC}"
+$SELECT_MODE && echo -e "${YELLOW}   $(t select_mode)${NC}"
 echo ""
 
 FOUND_ITEMS=()
@@ -285,7 +295,25 @@ fi
 
 # --- 4. binaries ---
 echo -e "${DIM}  [$(t bin_sec)]${NC}"
+# Detect nvm/fnm/volta managed node paths
+NVM_BIN=""
+if [ -n "${NVM_DIR:-}" ] && [ -d "$NVM_DIR" ]; then
+    NVM_BIN=$(find "$NVM_DIR/versions/node" -maxdepth 2 -name bin -type d 2>/dev/null | head -5)
+elif [ -d "$HOME/.nvm/versions/node" ]; then
+    NVM_BIN=$(find "$HOME/.nvm/versions/node" -maxdepth 2 -name bin -type d 2>/dev/null | head -5)
+fi
+FNM_BIN=""
+if [ -d "$HOME/.local/share/fnm/node-versions" ]; then
+    FNM_BIN=$(find "$HOME/.local/share/fnm/node-versions" -maxdepth 3 -name bin -type d 2>/dev/null | head -5)
+fi
+VOLTA_BIN=""
+[ -d "$HOME/.volta/bin" ] && VOLTA_BIN="$HOME/.volta/bin"
+
 BINARY_DIRS=("/usr/local/bin" "/usr/bin" "$HOME/.local/bin" "$HOME/.npm-global/bin" "$HOME/bin" "/opt/homebrew/bin")
+# Add nvm/fnm/volta paths
+for extra in $NVM_BIN $FNM_BIN $VOLTA_BIN; do
+    [ -n "$extra" ] && BINARY_DIRS+=("$extra")
+done
 for dir in "${BINARY_DIRS[@]}"; do
     for name in "${BINARY_NAMES[@]}"; do
         bp="$dir/$name"
@@ -446,11 +474,13 @@ fi
 # CONFIRM / 确认
 # ====================================
 
-read -p "$(t confirm)" -n 1 -r
-echo ""
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo -e "${YELLOW}$(t cancelled)${NC}"
-    exit 0
+if ! $SELECT_MODE; then
+    read -p "$(t confirm)" -n 1 -r
+    echo ""
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo -e "${YELLOW}$(t cancelled)${NC}"
+        exit 0
+    fi
 fi
 
 echo ""
@@ -479,6 +509,15 @@ do_rm() {
 for item in "${FOUND_ITEMS[@]}"; do
     type="${item%%:*}"
     value="${item#*:}"
+
+    # --select mode: ask for each item
+    if $SELECT_MODE; then
+        read -p "  ${value} — $(t select_prompt)" -n 1 -r
+        echo ""
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            continue
+        fi
+    fi
 
     case "$type" in
         npm)

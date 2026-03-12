@@ -65,6 +65,7 @@ Done with the claws? **Bye bye.** 🦀
 ```bash
 ./uninstall.sh --dry-run        # Scan only, no deletions
 ./uninstall.sh --keep-config    # Keep config files
+./uninstall.sh --select         # Interactively choose what to remove
 ./uninstall.sh --lang=en        # Force English
 ./uninstall.sh --lang=zh        # Force Chinese
 ```
@@ -72,6 +73,7 @@ Done with the claws? **Bye bye.** 🦀
 ```powershell
 .\uninstall.ps1 -DryRun         # Scan only
 .\uninstall.ps1 -KeepConfig     # Keep config files
+.\uninstall.ps1 -Select         # Interactively choose what to remove
 .\uninstall.ps1 -Lang en        # Force English
 .\uninstall.ps1 -Lang zh        # Force Chinese
 ```
