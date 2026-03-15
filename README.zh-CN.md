@@ -1,5 +1,8 @@
 # 👋 ByeByeClaw
 
+> [!CAUTION]
+> 本工具将**永久删除**所有 Claw Agent 数据——记忆、聊天记录、API 密钥、配置文件。**请先备份。** 用 `--dry-run` 预览。
+
 [English](./README.md)
 
 **一行命令卸载所有 Claw 家族 AI Agent。无残留。**
@@ -23,9 +26,6 @@ irm https://raw.githubusercontent.com/wanikua/byebyeclaw/main/uninstall.ps1 | ie
 ```
 
 试完不想留？**Bye bye.** 🦀
-
-> [!CAUTION]
-> **⚠️ 数据丢失警告：** 本工具将永久删除所有 Claw 家族工具的配置目录、数据文件、对话历史、记忆文件和缓存数据。这包括 **AI Agent 的记忆数据、聊天记录、API 密钥、自定义配置及项目相关设置**。删除后**无法恢复**。请在执行前**备份所有重要数据**。使用 `--dry-run` 预览将被清理的内容，或使用 `--keep-config` 保留配置文件。
 
 ## 🦞 支持卸载的工具
 
