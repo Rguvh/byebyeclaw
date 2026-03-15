@@ -215,6 +215,23 @@ $KEEP_CONFIG && echo -e "${YELLOW}   $(t keep_config)${NC}"
 $SELECT_MODE && echo -e "${YELLOW}   $(t select_mode)${NC}"
 echo ""
 
+# --- Data loss warning / 数据丢失警告 ---
+if [ "$LANG_CODE" = "zh" ]; then
+    echo -e "${RED}${BOLD}⚠️  数据丢失警告${NC}"
+    echo -e "${RED}本工具将永久删除所有 Claw 家族工具的配置、数据、对话历史、"
+    echo -e "记忆文件和缓存。包括 AI Agent 记忆、聊天记录、API 密钥等。"
+    echo -e "删除后无法恢复！请确认已备份所有重要数据。${NC}"
+    echo -e "${DIM}提示：使用 --dry-run 预览 | --keep-config 保留配置${NC}"
+else
+    echo -e "${RED}${BOLD}⚠️  DATA LOSS WARNING${NC}"
+    echo -e "${RED}This tool will permanently delete ALL config, data, conversation history,"
+    echo -e "memory files, and caches for Claw-family tools. This includes AI agent"
+    echo -e "memories, chat logs, API keys, and project settings."
+    echo -e "Once deleted, this data CANNOT be recovered! Please back up first.${NC}"
+    echo -e "${DIM}Tip: use --dry-run to preview | --keep-config to preserve configs${NC}"
+fi
+echo ""
+
 FOUND_ITEMS=()
 FOUND_COUNT=0
 

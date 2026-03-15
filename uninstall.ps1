@@ -121,6 +121,23 @@ if ($KeepConfig){ Write-Host "   $(T 'keep_config')" -ForegroundColor Yellow }
 if ($Select)    { Write-Host "   [$(T 'select_mode')]" -ForegroundColor Yellow }
 Write-Host ""
 
+# --- Data loss warning ---
+if ($Lang -eq "zh") {
+    Write-Host "⚠️  数据丢失警告" -ForegroundColor Red
+    Write-Host "本工具将永久删除所有 Claw 家族工具的配置、数据、对话历史、" -ForegroundColor Red
+    Write-Host "记忆文件和缓存。包括 AI Agent 记忆、聊天记录、API 密钥等。" -ForegroundColor Red
+    Write-Host "删除后无法恢复！请确认已备份所有重要数据。" -ForegroundColor Red
+    Write-Host "提示：使用 -DryRun 预览 | -KeepConfig 保留配置" -ForegroundColor DarkGray
+} else {
+    Write-Host "⚠️  DATA LOSS WARNING" -ForegroundColor Red
+    Write-Host "This tool will permanently delete ALL config, data, conversation history," -ForegroundColor Red
+    Write-Host "memory files, and caches for Claw-family tools. This includes AI agent" -ForegroundColor Red
+    Write-Host "memories, chat logs, API keys, and project settings." -ForegroundColor Red
+    Write-Host "Once deleted, this data CANNOT be recovered! Please back up first." -ForegroundColor Red
+    Write-Host "Tip: use -DryRun to preview | -KeepConfig to preserve configs" -ForegroundColor DarkGray
+}
+Write-Host ""
+
 $foundItems = @()
 
 function Found($Type, $Value, $Desc) {

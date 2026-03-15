@@ -24,6 +24,9 @@ irm https://raw.githubusercontent.com/wanikua/byebyeclaw/main/uninstall.ps1 | ie
 
 Done with the claws? **Bye bye.** 🦀
 
+> [!CAUTION]
+> **⚠️ DATA LOSS WARNING:** This tool will permanently delete ALL configuration directories, data files, conversation history, memory files, and cached data associated with Claw-family tools. This includes **AI agent memories, chat logs, API keys, custom configurations, and project-specific settings**. Once deleted, this data **CANNOT be recovered**. Please **back up any important data** before proceeding. Use `--dry-run` to preview what will be removed, or `--keep-config` to preserve configuration files.
+
 ## 🦞 Supported Tools
 
 | Tool | Stars | Description |
